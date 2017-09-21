@@ -84,12 +84,14 @@
             Snackbar.snackbar.appendChild(actionButton);
         }
 
-        setTimeout(function () {
+        if (options.duration > 0) {
+          setTimeout(function () {
             if (Snackbar.current === this) {
-                Snackbar.current.style.opacity = 0;
+              Snackbar.current.style.opacity = 0;
             }
 
-        }.bind(Snackbar.snackbar), options.duration);
+          }.bind(Snackbar.snackbar), options.duration);
+        }
 
         Snackbar.snackbar.addEventListener('transitionend', function (event, elapsed) {
             if (event.propertyName == 'opacity' && this.style.opacity == '0') {
